@@ -1,4 +1,4 @@
-    const API_URL = "https://portfolio-production-0fc4.up.railway.app";
+    const API_URL = "https://portfolio-production-0fc4.up.railway.app/api/projects";
 
 async function loadProjects() {
     try {
