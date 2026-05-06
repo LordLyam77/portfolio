@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>My Portfolio</h1>
+        <p>Full Stack Developer</p>
+    </header>
+
+
+
+    <!-- Skills Section -->
+    <section class="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <span>C</span>
+            <span>Java</span>
+            <span>Python</span>
+            <span>Python (Data Analysis)</span>
+            <span>Laravel</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>PHP</span>
+        </div>
+    </section>
+
+
+    <h2>Add Project</h2>
+
+<form id="project-form">
+    <input type="text" id="title" placeholder="Project Title" required>
+    <input type="text" id="description" placeholder="Description" required>
+    <input type="text" id="tech_stack" placeholder="Tech Stack" required>
+    <input type="text" id="github_link" placeholder="GitHub Link">
+    <input type="text" id="live_link" placeholder="Live Link">
+    <button type="submit">Add Project</button>
+</form>
+
+    <!-- Projects Section -->
+    <section>
+        <h2>Projects</h2>
+        <div id="projects-container"></div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
