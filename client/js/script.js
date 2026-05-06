@@ -1,4 +1,4 @@
-    const API_URL = "http://localhost:5000/api/projects";
+    const API_URL = "https://portfolio-production-0fc4.up.railway.app";
 
 async function loadProjects() {
     try {
