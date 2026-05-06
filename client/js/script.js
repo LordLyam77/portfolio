@@ -1,5 +1,6 @@
-    const API_URL = "https://portfolio-production-0fc4.up.railway.app/api/projects";
+const API_URL = "https://portfolio-production-0fc4.up.railway.app/api/projects";
 
+// 🔹 Load projects
 async function loadProjects() {
     try {
         const response = await fetch(API_URL);
@@ -17,7 +18,6 @@ async function loadProjects() {
                 <p>${project.description}</p>
                 <p><strong>Tech:</strong> ${project.tech_stack}</p>
                 <a href="${project.github_link}" target="_blank">GitHub</a>
-                <a href="${project.live_link}" target="_blank">Live</a>
                 <button onclick="deleteProject(${project.id})">Delete</button>
             `;
 
@@ -29,37 +29,49 @@ async function loadProjects() {
     }
 }
 
+// 🔹 Delete project
 async function deleteProject(id) {
-    await fetch(`${API_URL}/${id}`, {
-        method: "DELETE"
-    });
+    try {
+        await fetch(`${API_URL}/${id}`, {
+            method: "DELETE"
+        });
 
-    loadProjects(); // refresh
+        loadProjects();
+    } catch (error) {
+        console.error("Delete error:", error);
+    }
 }
 
+// 🔹 Add project
 const form = document.getElementById("project-form");
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+if (form) {
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    const project = {
-        title: document.getElementById("title").value,
-        description: document.getElementById("description").value,
-        tech_stack: document.getElementById("tech_stack").value,
-        github_link: document.getElementById("github_link").value,
-        live_link: document.getElementById("live_link").value
-    };
+        const project = {
+            title: document.getElementById("title").value,
+            description: document.getElementById("description").value,
+            tech_stack: document.getElementById("tech_stack").value,
+            github_link: document.getElementById("github_link").value
+        };
 
-    await fetch("http://localhost:5000/api/projects", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(project)
+        try {
+            await fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(project)
+            });
+
+            form.reset();
+            loadProjects();
+        } catch (error) {
+            console.error("Add error:", error);
+        }
     });
+}
 
-    form.reset();
-    loadProjects(); // refresh project list
-});
-
+// 🔹 Initial load
 loadProjects();
